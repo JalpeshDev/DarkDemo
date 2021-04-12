@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreenTag,
+      initialRoute: LoginPageTag,
       routes: routes,
     );
   }
