@@ -12,7 +12,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final dSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: primaryColorDemo1,
       body: _body(dSize),
       resizeToAvoidBottomInset: false,
     );
@@ -32,10 +32,10 @@ class _ProfilePageState extends State<ProfilePage> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(LoginScreenTag);
+                  Navigator.of(context).pushReplacementNamed(LoginPageDemo1Tag);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: accentColor,
+                  primary: accentColorDemo1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       vertical: 18.0, horizontal: 45),
                   child: TextView(
                     backToHomeBTN,
-                    textColor: primaryColor,
+                    textColor: primaryColorDemo1,
                     fontSize: 16,
                   ),
                 ),
@@ -56,15 +56,15 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 40,
             ),
-            textField('Jhon Carter', fullNameStr, Icons.person),
+            textField(userNameExp, fullNameStr, Icons.person),
             SizedBox(
               height: 10,
             ),
-            textField('(555)555-1245', mobileNoStr, Icons.phone_android),
+            textField(phoneExp, phoneCapStr, Icons.phone_android),
             SizedBox(
               height: 10,
             ),
-            textField("myemail@email.com", emailStr, Icons.email),
+            textField(emailExp, emailStr, Icons.email),
           ],
         ),
       ),
@@ -107,14 +107,14 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 15,
           ),
           TextView(
-            "Jhon carter",
+            userNameExp,
             fontSize: 18,
           ),
           SizedBox(
             height: 15,
           ),
           TextView(
-            "myemail@email.com",
+            emailExp,
             fontSize: 18,
           ),
           SizedBox(

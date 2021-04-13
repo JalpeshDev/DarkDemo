@@ -1,6 +1,9 @@
-import 'package:dark_app_demo/view/ui/second/profile/profile1.dart';
-import 'package:dark_app_demo/view/ui/second/signup/signup.dart';
+import 'dart:math';
+
+import 'package:dark_app_demo/view/utils/constants.dart';
+import 'package:dark_app_demo/view/utils/text_view.dart';
 import 'package:dark_app_demo/view/utils/widgets/bezierContainer.dart';
+import 'package:dark_app_demo/view/utils/widgets/customClipper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,10 +28,16 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
+              child: Icon(
+                Icons.keyboard_arrow_left,
+                color: whiteColor,
+              ),
             ),
-            Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            TextView(
+              backStr,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            )
           ],
         ),
       ),
@@ -41,125 +50,50 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          TextView(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
           ),
           SizedBox(
             height: 10,
           ),
           TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.black26,
-                  filled: true))
+            obscureText: isPassword,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: demoScreen2FillColor,
+              filled: true,
+            ),
+          ),
         ],
       ),
     );
   }
 
   Widget _submitButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, ProfilePageDemo2Tag);
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ProfileOnePage()));
-        },
-        child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: <double>[0.2, 0.9],
+            colors: [buttonBackgroundColor, primaryGradTwoColor],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget _divider() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          Text('or'),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _facebookButton() {
-    return Container(
-      height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff1959a9),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('f',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff2872ba),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('Log in with Facebook',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-        ],
+        child: TextView(
+          loginBTN,
+          fontSize: 20,
+          textColor: whiteColor,
+        ),
       ),
     );
   }
@@ -167,8 +101,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _createAccountLabel() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        Navigator.pushNamed(context, RegisterPageDemo2Tag);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -178,18 +111,21 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Don\'t have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              signUpHint,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: greyColor,
+              ),
             ),
             SizedBox(
               width: 10,
             ),
-            Text(
-              'Register',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+            TextView(
+              registerStr,
+              textColor: darkRedColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),
@@ -201,21 +137,21 @@ class _LoginPageState extends State<LoginPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'Lo',
+          text: loginRichText1,
           style: GoogleFonts.portLligatSans(
             textStyle: Theme.of(context).textTheme.display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Color(0xffe46b10),
+            color: brightRedColor,
           ),
           children: [
             TextSpan(
-              text: 'g',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              text: loginRichText2,
+              style: TextStyle(color: Colors.white70, fontSize: 30),
             ),
             TextSpan(
-              text: 'in',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+              text: loginRichText3,
+              style: TextStyle(color: brightRedColor, fontSize: 30),
             ),
           ]),
     );
@@ -224,8 +160,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        _entryField(emailIdStr),
+        _entryField(passStr, isPassword: true),
       ],
     );
   }
@@ -235,13 +171,22 @@ class _LoginPageState extends State<LoginPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
-      height: height,
+          height: height,
+      decoration: BoxDecoration(
+        gradient: bgGradient,
+      ),
       child: Stack(
         children: <Widget>[
           Positioned(
-              top: -height * .15,
-              right: -MediaQuery.of(context).size.width * .4,
-              child: BezierContainer()),
+            top: -height * .15,
+            right: -MediaQuery.of(context).size.width * .4,
+            child: BezierContainer(),
+          ),
+          Positioned(
+            top: height * 0.8,
+            right: MediaQuery.of(context).size.width * .7,
+            child: BezierContainerNew(),
+          ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
@@ -253,18 +198,16 @@ class _LoginPageState extends State<LoginPage> {
                   _title(),
                   SizedBox(height: 50),
                   _emailPasswordWidget(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 60),
                   _submitButton(),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     alignment: Alignment.centerRight,
-                    child: Text('Forgot Password ?',
+                    child: Text(forgotpass,
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w500)),
                   ),
-                  _divider(),
-                  _facebookButton(),
-                  SizedBox(height: height * .055),
+                  SizedBox(height: height * 0.2),
                   _createAccountLabel(),
                 ],
               ),
@@ -272,6 +215,30 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Positioned(top: 40, left: 0, child: _backButton()),
         ],
+      ),
+    ));
+  }
+}
+
+class BezierContainerNew extends StatelessWidget {
+  const BezierContainerNew({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Transform.rotate(
+      angle: pi / 3,
+      child: ClipPath(
+        clipper: ClipPainter(),
+        child: Container(
+          height: MediaQuery.of(context).size.height * .5,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [brightRedColor, darkRedColor])),
+        ),
       ),
     ));
   }

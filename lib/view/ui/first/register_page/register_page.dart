@@ -1,20 +1,19 @@
 import 'package:dark_app_demo/view/utils/constants.dart';
 import 'package:dark_app_demo/view/utils/text_view.dart';
-import 'package:dark_app_demo/view/utils/widgets/textFormFields.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dark_app_demo/view/utils/widgets/textFormFieldsForDemo1.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final dSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: primaryColorDemo1,
       body: _body(dSize),
       resizeToAvoidBottomInset: false,
     );
@@ -25,37 +24,44 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Container(
         padding: EdgeInsets.only(
-          top: dSize.height * 0.2,
+          top: dSize.height * 0.1,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/login-bg.png',
-                    height: 150,
-                    width: 150,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                IconButton(
+                    icon: Icon(Icons.arrow_back_rounded),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(LoginPageDemo1Tag);
+                    }),
                 TextView(
-                  loginStr,
+                  createAccount,
                   fontSize: 28,
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TextView(
-                  loginHint,
+                  createAccountHint,
                   fontSize: 18,
                   textColor: greyColor,
                 ),
                 SizedBox(
                   height: 15,
+                ),
+                customTextFormField(icon: Icons.person, labelName: fullNameStr),
+                SizedBox(
+                  height: 10,
+                ),
+                customTextFormField(
+                    icon: Icons.phone_android, labelName: phoneCapStr),
+                SizedBox(
+                  height: 10,
                 ),
                 customTextFormField(icon: Icons.email, labelName: emailStr),
                 SizedBox(
@@ -63,17 +69,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 customTextFormField(icon: Icons.lock, labelName: passStr),
                 SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
-                loginBtn(),
+                customTextFormField(
+                    icon: Icons.lock, labelName: confirmPassStr),
                 SizedBox(
-                  height: 20,
+                  height: 60,
                 ),
-                Center(
-                    child: TextView(
-                  forgotpass,
-                  textColor: greyColor,
-                )),
+                signUpBtn(),
               ],
             ),
             footer(),
@@ -88,36 +91,34 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextView(
-          signUpHint,
+          alreadyAccount,
           textColor: greyColor,
         ),
         TextButton(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed(RegisterPageTag);
+              Navigator.of(context).pushReplacementNamed(LoginPageDemo1Tag);
             },
             child: TextView(
-              signUpBTN,
+              signInBTN,
               textColor: whiteColor,
             )),
       ],
     );
   }
 
-  Widget loginBtn() {
+  Widget signUpBtn() {
     return Center(
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacementNamed(ProfilePageTag);
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
-            primary: accentColor,
+            primary: accentColorDemo1,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50)))),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 50),
           child: TextView(
-            loginBTN,
-            textColor: primaryColor,
+            signUpBTN,
+            textColor: primaryColorDemo1,
             fontSize: 22,
           ),
         ),

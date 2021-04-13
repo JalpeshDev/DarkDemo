@@ -1,5 +1,9 @@
-import 'package:dark_app_demo/view/ui/second/loginPage/loginPage.dart';
+import 'dart:math';
+
+import 'package:dark_app_demo/view/utils/constants.dart';
+import 'package:dark_app_demo/view/utils/text_view.dart';
 import 'package:dark_app_demo/view/utils/widgets/bezierContainer.dart';
+import 'package:dark_app_demo/view/utils/widgets/customClipper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,10 +28,13 @@ class _SignUpPageState extends State<SignUpPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
+              child: Icon(Icons.keyboard_arrow_left, color: whiteColor),
             ),
-            Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            TextView(
+              backStr,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
           ],
         ),
       ),
@@ -40,19 +47,22 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          TextView(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
           ),
           SizedBox(
             height: 10,
           ),
           TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.black26,
-                  filled: true))
+            obscureText: isPassword,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: demoScreen2FillColor,
+              filled: true,
+            ),
+          ),
         ],
       ),
     );
@@ -66,9 +76,11 @@ class _SignUpPageState extends State<SignUpPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            stops: <double>[0.2, 0.9],
+            colors: [buttonBackgroundColor, primaryGradTwoColor],
+          )),
       child: Text(
         'Register Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -79,8 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _loginAccountLabel() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.pushNamed(context, LoginPageDemo2Tag);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -89,19 +100,20 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Already have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            TextView(
+              alreadyAccount,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              textColor: greyColor,
             ),
             SizedBox(
               width: 10,
             ),
-            Text(
-              'Login',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+            TextView(
+              loginStr,
+              textColor: darkRedColor,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),
@@ -113,21 +125,21 @@ class _SignUpPageState extends State<SignUpPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'Re',
+          text: registerRichText1,
           style: GoogleFonts.portLligatSans(
             textStyle: Theme.of(context).textTheme.display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Color(0xffe46b10),
+            color: brightRedColor,
           ),
           children: [
             TextSpan(
-              text: 'gis',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              text: registerRichText2,
+              style: TextStyle(color: Colors.white70, fontSize: 30),
             ),
             TextSpan(
-              text: 'ter',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+              text: registerRichText3,
+              style: TextStyle(color: brightRedColor, fontSize: 30),
             ),
           ]),
     );
@@ -136,9 +148,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Username"),
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        _entryField(userNameStr),
+        _entryField(emailIdStr),
+        _entryField(passStr, isPassword: true),
       ],
     );
   }
@@ -148,6 +160,9 @@ class _SignUpPageState extends State<SignUpPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(
+          gradient: bgGradient,
+        ),
         height: height,
         child: Stack(
           children: <Widget>[
@@ -155,6 +170,11 @@ class _SignUpPageState extends State<SignUpPage> {
               top: -MediaQuery.of(context).size.height * .15,
               right: -MediaQuery.of(context).size.width * .4,
               child: BezierContainer(),
+            ),
+            Positioned(
+              top: height * 0.8,
+              right: MediaQuery.of(context).size.width * .7,
+              child: BezierContainerNew(),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -184,5 +204,29 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+}
+
+class BezierContainerNew extends StatelessWidget {
+  const BezierContainerNew({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Transform.rotate(
+      angle: pi / 3,
+      child: ClipPath(
+        clipper: ClipPainter(),
+        child: Container(
+          height: MediaQuery.of(context).size.height * .5,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [brightRedColor, darkRedColor])),
+        ),
+      ),
+    ));
   }
 }

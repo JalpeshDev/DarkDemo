@@ -1,4 +1,5 @@
 import 'package:dark_app_demo/view/utils/constants.dart';
+import 'package:dark_app_demo/view/utils/text_view.dart';
 import 'package:flutter/material.dart';
 
 class ProfileOnePage extends StatelessWidget {
@@ -7,159 +8,201 @@ class ProfileOnePage extends StatelessWidget {
     return Scaffold(
       // backgroundColor: Colors.deepOrange,
       appBar: AppBar(
-        title: Text("View Profile"),
-        backgroundColor: accent3Color,
+        title: Text(viewProfileStr),
+        backgroundColor: primaryGradOneColor,
         elevation: 0,
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            height: 200,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [0.5, 0.9],
-                    colors: [accent2Color, accent3Color])),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.call,
-                        size: 30.0,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: bgGradientProfile,
+        ),
+        child: ListView(
+          children: <Widget>[
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.1, 0.9],
+                      colors: [primaryGradOneColor, blackBGColor])),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      CircleAvatar(
+                        child: Icon(
+                          Icons.call,
+                          size: 30.0,
+                          color: darkRedColor,
+                        ),
+                        minRadius: 30.0,
+                        backgroundColor: buttonBackgroundColor,
                       ),
-                      minRadius: 30.0,
-                      backgroundColor: accent1Color,
+                      CircleAvatar(
+                        minRadius: 60,
+                        backgroundColor: whiteColor,
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/image.jpg'),
+                          minRadius: 50,
+                        ),
+                      ),
+                      CircleAvatar(
+                        child: Icon(
+                          Icons.message,
+                          size: 30.0,
+                          color: darkRedColor,
+                        ),
+                        minRadius: 30.0,
+                        backgroundColor: buttonBackgroundColor,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextView(
+                    userNameExp,
+                    fontSize: 22.0,
+                    textColor: whiteColor,
+                  ),
+                  TextView(
+                    addressExp,
+                    fontSize: 14.0,
+                    textColor: purplishColor,
+                  )
+                ],
+              ),
+            ),
+            Container(
+              // height: 50,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      color: primaryGradOneColor,
+                      child: ListTile(
+                        title: TextView(
+                          "50895",
+                          textAlign: TextAlign.center,
+                          textColor: whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0,
+                        ),
+                        subtitle: TextView(
+                          followersStr,
+                          textAlign: TextAlign.center,
+                          textColor: whiteColor,
+                        ),
+                      ),
                     ),
-                    CircleAvatar(
-                      minRadius: 60,
-                      backgroundColor: greyColor,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/image.jpg'),
-                        minRadius: 50,
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: primaryGradOneColor,
+                      child: ListTile(
+                        title: TextView(
+                          "34524",
+                          textAlign: TextAlign.center,
+                          textColor: whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0,
+                        ),
+                        subtitle: TextView(
+                          followingStr,
+                          textAlign: TextAlign.center,
+                          textColor: whiteColor,
+                        ),
                       ),
                     ),
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.message,
-                        size: 30.0,
-                      ),
-                      minRadius: 30.0,
-                      backgroundColor: accent1Color,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [primaryGradOneColor, blackBGColor])),
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextView(
+                      emailIdStr,
+                      textColor: whiteColor,
+                      fontSize: 18.0,
+                    ),
+                    TextView(
+                      emailExp,
+                      fontSize: 22.0,
+                      textColor: whiteColor,
+                    ),
+                    Divider(
+                      color: brightRedColor,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextView(
+                      phoneStr,
+                      textColor: whiteColor,
+                      fontSize: 22.0,
+                    ),
+                    TextView(
+                      phoneExp,
+                      fontSize: 18.0,
+                      textColor: whiteColor,
+                    ),
+                    Divider(
+                      color: brightRedColor,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextView(
+                      twitterStr,
+                      textColor: whiteColor,
+                      fontSize: 18.0,
+                    ),
+                    TextView(
+                      twitterExp,
+                      fontSize: 22.0,
+                      textColor: whiteColor,
+                    ),
+                    Divider(
+                      color: brightRedColor,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextView(
+                      facebookStr,
+                      textColor: whiteColor,
+                      fontSize: 18.0,
+                    ),
+                    TextView(
+                      facebookExp,
+                      fontSize: 22.0,
+                      textColor: whiteColor,
+                    ),
+                    Divider(
+                      color: brightRedColor,
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Ram Kumar",
-                  style: TextStyle(fontSize: 22.0, color: Colors.white),
-                ),
-                Text(
-                  "Kathmandu, Nepal",
-                  style: TextStyle(fontSize: 14.0, color: greyColor),
-                )
-              ],
+              ),
             ),
-          ),
-          Container(
-            // height: 50,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    color: accentColor,
-                    child: ListTile(
-                      title: Text(
-                        "50895",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      ),
-                      subtitle: Text(
-                        "FOLLOWERS",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    color: accentColor,
-                    child: ListTile(
-                      title: Text(
-                        "34524",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      ),
-                      subtitle: Text(
-                        "FOLLOWING",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Email",
-              style: TextStyle(color: accentColor, fontSize: 12.0),
-            ),
-            subtitle: Text(
-              "ram@kumar.com",
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text(
-              "Phone",
-              style: TextStyle(color: accentColor, fontSize: 12.0),
-            ),
-            subtitle: Text(
-              "+977 9818225533",
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text(
-              "Twitter",
-              style: TextStyle(color: accentColor, fontSize: 12.0),
-            ),
-            subtitle: Text(
-              "@ramkumar",
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text(
-              "Facebook",
-              style: TextStyle(color: accentColor, fontSize: 12.0),
-            ),
-            subtitle: Text(
-              "facebook.com/ramkumar",
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Divider(),
-        ],
+          ],
+        ),
       ),
     );
   }
