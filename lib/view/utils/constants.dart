@@ -42,16 +42,16 @@ Color grey400 = Colors.grey[400];
 const Color primaryGradOneColor = Color(0xFF383B48);
 const Color primaryGradTwoColor = Color(0xFF565662);
 const Color buttonBackgroundColor = Color(0xFF8B90A0);
+const Color submitButtonBackgroundColor = Color(0xFF272737);
 const Color darkRedColor = Color(0xFF610504);
 const Color brightRedColor = Color(0xFFA00605);
 const Color purplishColor = Color(0xFF792890);
 const Color blackBGColor = Color(0xFF0E090B);
 
 const LinearGradient bgGradient = LinearGradient(
-  colors: <Color>[primaryGradOneColor, blackBGColor],
-  stops: <double>[0.5, 0.8],
-  begin: Alignment.topRight,
-  end: Alignment.bottomLeft,
+  colors: [primaryGradOneColor, blackBGColor],
+  begin: Alignment.centerRight,
+  end: Alignment.centerLeft,
 );
 
 const LinearGradient bgGradientProfile = LinearGradient(
@@ -143,6 +143,10 @@ const followingSmallStr = "Following";
 const followMeStr = "FOLLOW ME";
 const showAllCommentStr = "Show all comments";
 const addToGrpStr = "Add to group";
+const termsRichText1 = 'I agree to the DarkDemo ';
+const termsRichText2 = 'Terms of Service ';
+const termsRichText3 = 'And ';
+const termsRichText4 = 'Privacy Policy ';
 
 //Button String
 const loginBTN = "LOGIN";

@@ -17,6 +17,7 @@ class ProfileOnePage extends StatelessWidget {
           gradient: bgGradientProfile,
         ),
         child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Container(
               height: 200,
@@ -47,7 +48,7 @@ class ProfileOnePage extends StatelessWidget {
                         backgroundColor: whiteColor,
                         child: CircleAvatar(
                           backgroundImage:
-                              AssetImage('assets/images/image.jpg'),
+                          AssetImage('assets/images/image.jpg'),
                           minRadius: 50,
                         ),
                       ),
@@ -67,7 +68,7 @@ class ProfileOnePage extends StatelessWidget {
                   ),
                   TextView(
                     userNameExp,
-                    fontSize: 22.0,
+                    fontSize: 18.0,
                     textColor: whiteColor,
                   ),
                   TextView(
@@ -91,7 +92,7 @@ class ProfileOnePage extends StatelessWidget {
                           textAlign: TextAlign.center,
                           textColor: whiteColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
+                          fontSize: 16.0,
                         ),
                         subtitle: TextView(
                           followersStr,
@@ -110,7 +111,7 @@ class ProfileOnePage extends StatelessWidget {
                           textAlign: TextAlign.center,
                           textColor: whiteColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
+                          fontSize: 16.0,
                         ),
                         subtitle: TextView(
                           followingStr,
@@ -136,11 +137,11 @@ class ProfileOnePage extends StatelessWidget {
                     TextView(
                       emailIdStr,
                       textColor: whiteColor,
-                      fontSize: 18.0,
+                      fontSize: 16.0,
                     ),
                     TextView(
                       emailExp,
-                      fontSize: 22.0,
+                      fontSize: 14,
                       textColor: whiteColor,
                     ),
                     Divider(
@@ -152,11 +153,11 @@ class ProfileOnePage extends StatelessWidget {
                     TextView(
                       phoneStr,
                       textColor: whiteColor,
-                      fontSize: 22.0,
+                      fontSize: 16.0,
                     ),
                     TextView(
                       phoneExp,
-                      fontSize: 18.0,
+                      fontSize: 14.0,
                       textColor: whiteColor,
                     ),
                     Divider(
@@ -168,11 +169,11 @@ class ProfileOnePage extends StatelessWidget {
                     TextView(
                       twitterStr,
                       textColor: whiteColor,
-                      fontSize: 18.0,
+                      fontSize: 14.0,
                     ),
                     TextView(
                       twitterExp,
-                      fontSize: 22.0,
+                      fontSize: 16.0,
                       textColor: whiteColor,
                     ),
                     Divider(
@@ -184,11 +185,11 @@ class ProfileOnePage extends StatelessWidget {
                     TextView(
                       facebookStr,
                       textColor: whiteColor,
-                      fontSize: 18.0,
+                      fontSize: 14.0,
                     ),
                     TextView(
                       facebookExp,
-                      fontSize: 22.0,
+                      fontSize: 16.0,
                       textColor: whiteColor,
                     ),
                     Divider(

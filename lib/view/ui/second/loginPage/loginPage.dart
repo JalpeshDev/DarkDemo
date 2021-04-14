@@ -2,10 +2,8 @@ import 'dart:math';
 
 import 'package:dark_app_demo/view/utils/constants.dart';
 import 'package:dark_app_demo/view/utils/text_view.dart';
-import 'package:dark_app_demo/view/utils/widgets/bezierContainer.dart';
 import 'package:dark_app_demo/view/utils/widgets/customClipper.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -44,29 +42,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _entryField(String title, IconData icon, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextView(
-            title,
+      child: TextField(
+        obscureText: isPassword,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          prefixIcon: Icon(
+            icon,
+            color: whiteColor,
+          ),
+          labelText: title,
+          labelStyle: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 15,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            obscureText: isPassword,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              fillColor: demoScreen2FillColor,
-              filled: true,
-            ),
-          ),
-        ],
+          fillColor: demoScreen2FillColor,
+          filled: true,
+        ),
       ),
     );
   }
@@ -82,12 +76,7 @@ class _LoginPageState extends State<LoginPage> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: <double>[0.2, 0.9],
-            colors: [buttonBackgroundColor, primaryGradTwoColor],
-          ),
+          color: submitButtonBackgroundColor,
         ),
         child: TextView(
           loginBTN,
@@ -110,22 +99,20 @@ class _LoginPageState extends State<LoginPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            TextView(
               signUpHint,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: greyColor,
-              ),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              textColor: whiteColor,
             ),
             SizedBox(
               width: 10,
             ),
             TextView(
               registerStr,
-              textColor: darkRedColor,
+              textColor: brightRedColor,
               fontSize: 16,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.bold,
             ),
           ],
         ),
@@ -138,20 +125,18 @@ class _LoginPageState extends State<LoginPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
           text: loginRichText1,
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: brightRedColor,
-          ),
+          style: TextStyle(
+              color: brightRedColor, fontSize: 45, fontFamily: 'ZenDots'),
           children: [
             TextSpan(
               text: loginRichText2,
-              style: TextStyle(color: Colors.white70, fontSize: 30),
+              style: TextStyle(
+                  color: Colors.white70, fontSize: 45, fontFamily: 'ZenDots'),
             ),
             TextSpan(
               text: loginRichText3,
-              style: TextStyle(color: brightRedColor, fontSize: 30),
+              style: TextStyle(
+                  color: brightRedColor, fontSize: 45, fontFamily: 'ZenDots'),
             ),
           ]),
     );
@@ -160,8 +145,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField(emailIdStr),
-        _entryField(passStr, isPassword: true),
+        _entryField(emailIdStr, Icons.email_rounded),
+        _entryField(passStr, Icons.lock_rounded, isPassword: true),
       ],
     );
   }
@@ -177,16 +162,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: Stack(
         children: <Widget>[
-          Positioned(
-            top: -height * .15,
-            right: -MediaQuery.of(context).size.width * .4,
-            child: BezierContainer(),
-          ),
-          Positioned(
-            top: height * 0.8,
-            right: MediaQuery.of(context).size.width * .7,
-            child: BezierContainerNew(),
-          ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
@@ -196,9 +171,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   SizedBox(height: height * .2),
                   _title(),
-                  SizedBox(height: 50),
+                  SizedBox(height: height * .11),
                   _emailPasswordWidget(),
-                  SizedBox(height: 60),
+                  SizedBox(height: height * .02),
                   _submitButton(),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
@@ -207,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w500)),
                   ),
-                  SizedBox(height: height * 0.2),
+                  SizedBox(height: height * 0.14),
                   _createAccountLabel(),
                 ],
               ),
@@ -227,12 +202,12 @@ class BezierContainerNew extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Transform.rotate(
-      angle: pi / 3,
+          angle: -pi / 2.5,
       child: ClipPath(
         clipper: ClipPainter(),
         child: Container(
           height: MediaQuery.of(context).size.height * .5,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width * 1.4,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,

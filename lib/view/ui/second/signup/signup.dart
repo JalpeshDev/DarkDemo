@@ -1,11 +1,7 @@
-import 'dart:math';
-
 import 'package:dark_app_demo/view/utils/constants.dart';
 import 'package:dark_app_demo/view/utils/text_view.dart';
-import 'package:dark_app_demo/view/utils/widgets/bezierContainer.dart';
-import 'package:dark_app_demo/view/utils/widgets/customClipper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -17,6 +13,14 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  var _toggleSwitch = false;
+
+  void _toggle(bool toggle) {
+    setState(() {
+      _toggleSwitch = !_toggleSwitch;
+    });
+  }
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -41,29 +45,25 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _entryField(String title, IconData icon, {bool isPassword = false}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextView(
-            title,
+      margin: EdgeInsets.symmetric(vertical: 5),
+      child: TextField(
+        obscureText: isPassword,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          prefixIcon: Icon(
+            icon,
+            color: whiteColor,
+          ),
+          labelText: title,
+          labelStyle: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 15,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            obscureText: isPassword,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              fillColor: demoScreen2FillColor,
-              filled: true,
-            ),
-          ),
-        ],
+          fillColor: demoScreen2FillColor,
+          filled: true,
+        ),
       ),
     );
   }
@@ -74,13 +74,9 @@ class _SignUpPageState extends State<SignUpPage> {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-            stops: <double>[0.2, 0.9],
-            colors: [buttonBackgroundColor, primaryGradTwoColor],
-          )),
+        color: submitButtonBackgroundColor,
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+      ),
       child: Text(
         'Register Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -103,17 +99,17 @@ class _SignUpPageState extends State<SignUpPage> {
             TextView(
               alreadyAccount,
               fontSize: 14,
-              fontWeight: FontWeight.w600,
-              textColor: greyColor,
+              fontWeight: FontWeight.w500,
+              textColor: whiteColor,
             ),
             SizedBox(
               width: 10,
             ),
             TextView(
               loginStr,
-              textColor: darkRedColor,
+              textColor: brightRedColor,
               fontSize: 18,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w900,
             ),
           ],
         ),
@@ -126,31 +122,106 @@ class _SignUpPageState extends State<SignUpPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
           text: registerRichText1,
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: brightRedColor,
-          ),
+          style: TextStyle(
+              color: brightRedColor, fontSize: 45, fontFamily: 'ZenDots'),
           children: [
             TextSpan(
               text: registerRichText2,
-              style: TextStyle(color: Colors.white70, fontSize: 30),
+              style: TextStyle(
+                  color: Colors.white70, fontSize: 45, fontFamily: 'ZenDots'),
             ),
             TextSpan(
               text: registerRichText3,
-              style: TextStyle(color: brightRedColor, fontSize: 30),
+              style: TextStyle(
+                  color: brightRedColor, fontSize: 45, fontFamily: 'ZenDots'),
             ),
           ]),
+    );
+  }
+
+  Widget _termsTitle() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          text: termsRichText1,
+          style: TextStyle(color: white, fontSize: 12, fontFamily: 'ZenDots'),
+          children: [
+            TextSpan(
+              text: termsRichText2,
+              style: TextStyle(
+                color: brightRedColor,
+                fontSize: 14,
+                fontFamily: 'ZenDots',
+              ),
+            ),
+            TextSpan(
+              text: termsRichText3,
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'ZenDots',
+              ),
+            ),
+            TextSpan(
+              text: termsRichText4,
+              style: TextStyle(
+                color: brightRedColor,
+                fontSize: 14,
+                fontFamily: 'ZenDots',
+              ),
+            ),
+          ]),
+    );
+  }
+
+  Widget _imageButton(double _height) {
+    return Container(
+      height: _height / 6,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              spreadRadius: 0.0,
+              color: demoScreen2FillColor,
+              offset: Offset(1.0, 10.0),
+              blurRadius: 20.0),
+        ],
+        color: whiteColor,
+        shape: BoxShape.circle,
+      ),
+      child: GestureDetector(
+          onTap: () {
+            print('Adding photo');
+          },
+          child: Icon(
+            Icons.add_a_photo,
+            size: 35,
+            color: brightRedColor,
+          )),
     );
   }
 
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField(userNameStr),
-        _entryField(emailIdStr),
-        _entryField(passStr, isPassword: true),
+        _entryField(firstNameStr, Icons.person_rounded),
+        _entryField(lastNameStr, Icons.person_outline_outlined),
+        _entryField(emailIdStr, Icons.email_rounded),
+        _entryField(mobileNoStr, Icons.phone_android),
+        _entryField(passStr, Icons.lock_rounded, isPassword: true),
+      ],
+    );
+  }
+
+  Widget _termsAndCondition() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Checkbox(
+          value: _toggleSwitch,
+          onChanged: _toggle,
+          activeColor: brightRedColor,
+        ),
+        Expanded(child: _termsTitle()),
       ],
     );
   }
@@ -166,16 +237,6 @@ class _SignUpPageState extends State<SignUpPage> {
         height: height,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              top: -MediaQuery.of(context).size.height * .15,
-              right: -MediaQuery.of(context).size.width * .4,
-              child: BezierContainer(),
-            ),
-            Positioned(
-              top: height * 0.8,
-              right: MediaQuery.of(context).size.width * .7,
-              child: BezierContainerNew(),
-            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
@@ -183,50 +244,31 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .2),
+                    SizedBox(height: height * .08),
                     _title(),
                     SizedBox(
-                      height: 50,
+                      height: height * .02,
                     ),
+                    _imageButton(height),
                     _emailPasswordWidget(),
                     SizedBox(
-                      height: 20,
+                      height: height * .02,
+                    ),
+                    _termsAndCondition(),
+                    SizedBox(
+                      height: height * .04,
                     ),
                     _submitButton(),
-                    SizedBox(height: height * .14),
+                    SizedBox(height: height * .02),
                     _loginAccountLabel(),
                   ],
                 ),
               ),
             ),
-            Positioned(top: 40, left: 0, child: _backButton()),
+            Positioned(top: height * .04, left: 0, child: _backButton()),
           ],
         ),
       ),
     );
-  }
-}
-
-class BezierContainerNew extends StatelessWidget {
-  const BezierContainerNew({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Transform.rotate(
-      angle: pi / 3,
-      child: ClipPath(
-        clipper: ClipPainter(),
-        child: Container(
-          height: MediaQuery.of(context).size.height * .5,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [brightRedColor, darkRedColor])),
-        ),
-      ),
-    ));
   }
 }
