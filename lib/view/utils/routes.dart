@@ -10,6 +10,11 @@ import 'package:dark_app_demo/view/ui/first/register_page/register_page.dart';
 import 'package:dark_app_demo/view/ui/fourth/login_page.dart' as fourth;
 import 'package:dark_app_demo/view/ui/fourth/profile.dart' as fourth;
 import 'package:dark_app_demo/view/ui/main_home_page/main_home_page.dart';
+import 'package:dark_app_demo/view/ui/second/eventpage/event_page.dart'
+    as second;
+import 'package:dark_app_demo/view/ui/second/homepage/home_page.dart' as second;
+import 'package:dark_app_demo/view/ui/second/homepage/home_page_diffNav.dart'
+    as second;
 import 'package:dark_app_demo/view/ui/second/loginPage/loginPage.dart'
     as second;
 import 'package:dark_app_demo/view/ui/second/profile/profile1.dart';
@@ -31,6 +36,9 @@ var routes = <String, WidgetBuilder>{
   RegisterPageDemo2Tag: (BuildContext context) => SignUpPage(),
   ProfilePageDemo2Tag: (BuildContext context) => ProfileOnePage(),
   LoginPageDemo2Tag: (BuildContext context) => second.LoginPage(),
+  HomePageDemo2Tag: (BuildContext context) => second.HomePage(),
+  HomePageNewDemo2Tag: (BuildContext context) => second.HomePageNew(),
+  EventPageDemo2Tag: (BuildContext context) => second.EventPage(),
   RegisterPageDemo3Tag: (BuildContext context) => third.SignUpScreen(),
   ProfilePageDemo3Tag: (BuildContext context) => ProfileThreePage(),
   LoginPageDemo3Tag: (BuildContext context) => third.SignInPage(),

@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:dark_app_demo/view/utils/constants.dart';
 import 'package:dark_app_demo/view/utils/text_view.dart';
-import 'package:dark_app_demo/view/utils/widgets/customClipper.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -65,10 +62,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _submitButton() {
+  Widget _submitButton(bool first) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProfilePageDemo2Tag);
+        Navigator.pushNamed(
+            context, first ? HomePageNewDemo2Tag : HomePageDemo2Tag);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -80,6 +78,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: TextView(
           loginBTN,
+          // first ? loginBTN + ' screen 2' : loginBTN + ' screen 1',
           fontSize: 20,
           textColor: whiteColor,
         ),
@@ -155,66 +154,45 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-          height: height,
-      decoration: BoxDecoration(
-        gradient: bgGradient,
-      ),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(height: height * .2),
-                  _title(),
-                  SizedBox(height: height * .11),
-                  _emailPasswordWidget(),
-                  SizedBox(height: height * .02),
-                  _submitButton(),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: Text(forgotpass,
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500)),
-                  ),
-                  SizedBox(height: height * 0.14),
-                  _createAccountLabel(),
-                ],
+      body: Container(
+        height: height,
+        decoration: BoxDecoration(
+          gradient: bgGradient,
+        ),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: height * .2),
+                    _title(),
+                    SizedBox(height: height * .11),
+                    _emailPasswordWidget(),
+                    SizedBox(height: height * .02),
+                    _submitButton(false),
+                    // SizedBox(height: 10),
+                    // _submitButton(true),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      alignment: Alignment.centerRight,
+                      child: Text(forgotpass,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500)),
+                    ),
+                    SizedBox(height: height * 0.14),
+                    _createAccountLabel(),
+                  ],
+                ),
               ),
             ),
-          ),
-          Positioned(top: 40, left: 0, child: _backButton()),
-        ],
-      ),
-    ));
-  }
-}
-
-class BezierContainerNew extends StatelessWidget {
-  const BezierContainerNew({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Transform.rotate(
-          angle: -pi / 2.5,
-      child: ClipPath(
-        clipper: ClipPainter(),
-        child: Container(
-          height: MediaQuery.of(context).size.height * .5,
-          width: MediaQuery.of(context).size.width * 1.4,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [brightRedColor, darkRedColor])),
+            Positioned(top: 40, left: 0, child: _backButton()),
+          ],
         ),
       ),
-    ));
+    );
   }
 }

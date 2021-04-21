@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        fontFamily: 'Regular',
+        fontFamily: 'ZenDots',
+        accentColor: purplishColor,
       ),
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,

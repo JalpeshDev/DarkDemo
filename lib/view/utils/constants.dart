@@ -47,6 +47,8 @@ const Color darkRedColor = Color(0xFF610504);
 const Color brightRedColor = Color(0xFFA00605);
 const Color purplishColor = Color(0xFF792890);
 const Color blackBGColor = Color(0xFF0E090B);
+const Color blackBG1Color = Color(0xFF29303b);
+const Color blackBG2Color = Color(0xFF2f3440);
 
 const LinearGradient bgGradient = LinearGradient(
   colors: [primaryGradOneColor, blackBGColor],
@@ -55,10 +57,17 @@ const LinearGradient bgGradient = LinearGradient(
 );
 
 const LinearGradient bgGradientProfile = LinearGradient(
-  colors: <Color>[buttonBackgroundColor, primaryGradTwoColor],
-  stops: <double>[0.0, 0.9],
-  begin: Alignment.topRight,
-  end: Alignment.bottomLeft,
+  colors: <Color>[primaryGradOneColor, blackBGColor],
+  stops: <double>[0.0, 0.5],
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+);
+
+const LinearGradient bgGradientHome = LinearGradient(
+  colors: <Color>[blackBGColor, primaryGradOneColor],
+  stops: <double>[0.2, 0.8],
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
 );
 
 const LinearGradient primaryGradient = LinearGradient(
@@ -75,6 +84,9 @@ const LoginPageDemo1Tag = 'LoginPageDemo1Tag';
 const RegisterPageDemo2Tag = 'RegisterPageDemo2Tag';
 const ProfilePageDemo2Tag = 'ProfilePageDemo2Tag';
 const LoginPageDemo2Tag = 'LoginPageDemo2Tag';
+const HomePageDemo2Tag = 'HomePageDemo2Tag';
+const HomePageNewDemo2Tag = 'HomePageNewDemo2Tag';
+const EventPageDemo2Tag = 'EventPageDemo2Tag';
 const RegisterPageDemo3Tag = 'RegisterPageDemo3Tag';
 const ProfilePageDemo3Tag = 'ProfilePageDemo3Tag';
 const LoginPageDemo3Tag = 'LoginPageDemo3Tag';
@@ -142,11 +154,21 @@ const followersSmallStr = "Followers";
 const followingSmallStr = "Following";
 const followMeStr = "FOLLOW ME";
 const showAllCommentStr = "Show all comments";
+const logOutStr = "Log Out";
 const addToGrpStr = "Add to group";
 const termsRichText1 = 'I agree to the DarkDemo ';
 const termsRichText2 = 'Terms of Service ';
 const termsRichText3 = 'And ';
 const termsRichText4 = 'Privacy Policy ';
+const profileText = 'PROFILE';
+const seeAllStr = 'See all';
+const searchStr = 'Search';
+const homeNavTitle = "Home";
+const exploreNavTitle = 'Explore';
+const chatsNavTitle = 'Chats';
+const settingsNavTitle = 'Settings';
+const readMoreStr = 'Read More';
+const descStr = 'Description';
 
 //Button String
 const loginBTN = "LOGIN";
@@ -159,6 +181,7 @@ const loginPage3BTN = 'DemoScreen3';
 const loginPage4BTN = 'DemoScreen4';
 const loginPage5BTN = 'DemoScreen5';
 const loginWithFbBtn = 'Log in with Facebook';
+const buyTickBTN = 'Buy Tickets';
 
 //Temp String
 const userNameExp = 'Joseph Meza';
@@ -172,3 +195,6 @@ const websiteExp = 'https://www.josephmeza.com';
 const loremIpsum =
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, illo repellendus quas beatae reprehenderit nemo, debitis explicabo officiis sit aut obcaecati iusto porro? Exercitationem illum consequuntur magnam eveniet delectus ab.";
 const joinDateExp = '15 February 2019';
+const demoDate = '25 - 26 May,2021';
+const timeDemo = '4pm - 12pm';
+const mapStr = 'Map Location';
